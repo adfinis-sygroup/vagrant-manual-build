@@ -1,12 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+memory_mb = "256"
+
 Vagrant.configure(2) do |config|
   config.ssh.forward_agent = true
 
   config.vm.define "centos6" do |centos6|
     centos6.vm.provider "virtualbox" do |vb|
-      vb.memory   = "256"
+      vb.memory   = memory_mb
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
@@ -16,9 +18,21 @@ Vagrant.configure(2) do |config|
     centos6.vm.box_download_checksum_type = "sha256"
   end
 
+  config.vm.define "centos7" do |centos7|
+    centos7.vm.provider "virtualbox" do |vb|
+      vb.memory   = memory_mb
+      vb.customize ["modifyvm", :id, "--cpus", 2]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    end
+    centos7.vm.box = "adsy-centos-7.2.box"
+    centos7.vm.box_url = "https://adfinis-sygroup.ch/file-exchange-public/adsy-centos-7.2.box"
+    centos7.vm.box_download_checksum = "b7464b893efeec591e04b3f74adbdd6c2df2c5f044c1c38abfb014b3659e28a6"
+    centos7.vm.box_download_checksum_type = "sha256"
+  end
+
   config.vm.define "jessie" do |jessie|
      jessie.vm.provider "virtualbox" do |vb|
-      vb.memory   = "256"
+      vb.memory   = memory_mb
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
@@ -30,7 +44,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "wheezy" do |wheezy|
     wheezy.vm.provider "virtualbox" do |vb|
-      vb.memory   = "256"
+      vb.memory   = memory_mb
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
@@ -42,7 +56,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "trusty" do |trusty|
     trusty.vm.provider "virtualbox" do |vb|
-      vb.memory   = "256"
+      vb.memory   = memory_mb
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
@@ -54,7 +68,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "vivid" do |vivid|
     vidid.vm.provider "virtualbox" do |vb|
-      vb.memory   = "256"
+      vb.memory   = memory_mb
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
@@ -66,7 +80,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "xenial" do |vivid|
     xenial.vm.provider "virtualbox" do |vb|
-      vb.memory   = "256"
+      vb.memory   = memory_mb
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
