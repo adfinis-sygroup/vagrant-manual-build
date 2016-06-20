@@ -67,7 +67,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "vivid" do |vivid|
-    vidid.vm.provider "virtualbox" do |vb|
+    vivid.vm.provider "virtualbox" do |vb|
       vb.memory   = memory_mb
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -78,7 +78,7 @@ Vagrant.configure(2) do |config|
     vivid.vm.box_download_checksum_type = "sha256"
   end
 
-  config.vm.define "xenial" do |vivid|
+  config.vm.define "xenial" do |xenial|
     xenial.vm.provider "virtualbox" do |vb|
       vb.memory   = memory_mb
       vb.customize ["modifyvm", :id, "--cpus", 2]
