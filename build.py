@@ -1,3 +1,3 @@
 #!/usr/bin/env python
 import sys
-print("huhu: %s" % sys.argv[1])
+print("huhu: %s" % ", ".join(sys.argv))

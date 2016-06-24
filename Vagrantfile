@@ -78,15 +78,15 @@ Vagrant.configure(2) do |config|
     vivid.vm.box_download_checksum_type = "sha256"
   end
 
-  config.vm.define "xenial" do |xenial|
-    xenial.vm.provider "virtualbox" do |vb|
-      vb.memory   = memory_mb
-      vb.customize ["modifyvm", :id, "--cpus", 2]
-      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    end
-    xenial.vm.box = "adsy-ubuntu-16.04.box"
-    xenial.vm.box_url = "https://adfinis-sygroup.ch/file-exchange-public/adsy-ubuntu-16.04.box"
-    xenial.vm.box_download_checksum = "40c31a3df527e0e2264dc3bce7fa0d330fbd49a4b0710512537d6c66353ef712"
-    xenial.vm.box_download_checksum_type = "sha256"
-  end
+#  config.vm.define "xenial" do |xenial|
+#    xenial.vm.provider "virtualbox" do |vb|
+#      vb.memory   = memory_mb
+#      vb.customize ["modifyvm", :id, "--cpus", 2]
+#      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+#    end
+#    xenial.vm.box = "adsy-ubuntu-16.04.box"
+#    xenial.vm.box_url = "https://adfinis-sygroup.ch/file-exchange-public/adsy-ubuntu-16.04.box"
+#    xenial.vm.box_download_checksum = "40c31a3df527e0e2264dc3bce7fa0d330fbd49a4b0710512537d6c66353ef712"
+#    xenial.vm.box_download_checksum_type = "sha256"
+#  end
 end
