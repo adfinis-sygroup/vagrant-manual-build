@@ -85,8 +85,8 @@ def debian(distro, arg):
     """Debian and ubuntu build"""
 
     def git():
-        check_system("sudo apt-get update")
         check_system("sudo apt-get install -y git")
+    check_system("sudo apt-get update")
     make(
         which("git"),
         git
