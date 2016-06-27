@@ -118,9 +118,12 @@ def debian(distro, arg):
         check_system("make deb")
         os.system("sudo dpkg -i ../*.deb")
         check_system("sudo apt-get install -f -y")
+    check_system("mkdir -p /vagrant/%s/" % distro)
+    check_system("mv *.deb /vagrant/%s/" % distro)
 
 
 def centos(distro, arg):
     """Centos build"""
+    pass
 
 [driver(sys.argv[1], arg) for arg in sys.argv[2:]]
