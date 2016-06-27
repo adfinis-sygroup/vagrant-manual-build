@@ -6,5 +6,5 @@ for i in "$@"; do
 done
 
 cat Vagrantfile  | grep define | grep -v -E "\s*#" | cut -d '"' -f 2 |
-	xargs -I% bash -c "vagrant up %; vagrant ssh % -c \"/vagrant/build.py % $C\"; vagrant halt %"
+	xargs -I% bash -c "vagrant up % && vagrant ssh % -c \"/vagrant/build.py % $C\" && vagrant halt %"
 
