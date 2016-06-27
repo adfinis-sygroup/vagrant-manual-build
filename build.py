@@ -84,14 +84,12 @@ def build_depends():
 def debian(distro, arg):
     """Debian and ubuntu build"""
 
-    def git():
-        check_system("sudo apt-get install -y git")
     check_system("sudo apt-get update")
     if distro == "wheezy":
         check_system("sudo apt-get install -y ca-certificates")
     make(
         which("git"),
-        git
+        lambda: check_system("sudo apt-get install -y git")
     )
     make(
         which("dpkg-checkbuilddeps"),
@@ -126,6 +124,18 @@ def debian(distro, arg):
 
 def centos(distro, arg):
     """Centos build"""
-    pass
+    make(
+        which("git"),
+        lambda: check_system("sudo yum install -y git")
+    )
+    base = repo(arg)
+    make(
+        which("rpm"),
+        lambda: check_system("sudo yum install -y rpm-build")
+    )
+    with chdir(base):
+        check_system("make rpm")
+    check_system("mkdir -p /vagrant/%s/" % distro)
+    check_system("mv */dist/*.rpm /vagrant/%s/" % distro)
 
 [driver(sys.argv[1], arg) for arg in sys.argv[2:]]
