@@ -86,7 +86,7 @@ Vagrant.configure(2) do |config|
 #    end
 #    xenial.vm.box = "adsy-ubuntu-16.04.box"
 #    xenial.vm.box_url = "https://adfinis-sygroup.ch/file-exchange-public/adsy-ubuntu-16.04.box"
-#    xenial.vm.box_download_checksum = "40c31a3df527e0e2264dc3bce7fa0d330fbd49a4b0710512537d6c66353ef712"
+#    xenial.vm.box_download_checksum = "99652b8e4ccee3266a3a87c267e8284f1fb2e217cf94c691e5a91e430076c705"
 #    xenial.vm.box_download_checksum_type = "sha256"
 #  end
 end
