@@ -87,6 +87,8 @@ def debian(distro, arg):
     def git():
         check_system("sudo apt-get install -y git")
     check_system("sudo apt-get update")
+    if distro == "wheezy":
+        check_system("sudo apt-get install -y ca-certificates")
     make(
         which("git"),
         git
