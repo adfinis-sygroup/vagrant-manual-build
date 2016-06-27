@@ -124,13 +124,22 @@ def debian(distro, arg):
 
 def centos(distro, arg):
     """Centos build"""
+    def pip():
+        check_system("sudo yum install -y epel-release")
+        check_system("sudo yum install -y python-pip")
+        check_system("sudo pip install -U setuptools")
+    if distro == "centos6":
+        make(
+            which("pip"),
+            pip
+        )
     make(
         which("git"),
         lambda: check_system("sudo yum install -y git")
     )
     base = repo(arg)
     make(
-        which("rpm"),
+        which("rpmbuild"),
         lambda: check_system("sudo yum install -y rpm-build")
     )
     with chdir(base):
