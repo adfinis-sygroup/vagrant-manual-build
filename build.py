@@ -90,6 +90,10 @@ def debian(distro, arg):
     if distro == "wheezy":
         check_system("sudo apt-get install -y ca-certificates")
     make(
+        which("pip"),
+        lambda: check_system("sudo apt-get install -y python-pip")
+    )
+    make(
         which("git"),
         lambda: check_system("sudo apt-get install -y git")
     )
