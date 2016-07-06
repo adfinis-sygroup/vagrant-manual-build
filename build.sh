@@ -6,6 +6,9 @@ for i in "$@"; do
 done
 
 for distro in `cat Vagrantfile  | grep define | grep -v -E "\s*#" | cut -d '"' -f 2`; do
-    vagrant up $distro && vagrant ssh $distro -c "/vagrant/build.py $distro $C" && vagrant halt
+    vagrant up $distro && \
+        vagrant ssh $distro -c "/vagrant/build.py $distro $C" && \
+        vagrant halt || \
+        exit 1
 done
-
+echo All packages successfully built!
