@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-memory_mb = "256"
+memory_mb = "512"
 
 Vagrant.configure(2) do |config|
   config.ssh.forward_agent = true
