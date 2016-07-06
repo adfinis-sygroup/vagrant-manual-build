@@ -119,6 +119,8 @@ def debian(distro, arg):
         )
         check_system("sudo make log")
         check_system("make deb")
+        if distro == "wheezy":
+            os.system("rm ../python3-*.deb")
         os.system("sudo dpkg -i ../*.deb")
         check_system("sudo apt-get install -f -y")
     check_system("mkdir -p /vagrant/%s/" % distro)
