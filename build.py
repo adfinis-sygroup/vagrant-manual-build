@@ -13,7 +13,7 @@ debian_based = {
     'wheezy': "07wheezy",
     'trusty': "14trusty",
     'vivid':  "15vivid",
-    'xenial': "16xenia",
+    'xenial': "16xenial",
 }
 
 all_distros = dict(debian_based.items() + redhat_based.items())
@@ -60,6 +60,8 @@ def make(condition, function):
 def repo(url):
     """Checkout a repository"""
     base = url.split(os.path.sep)[-1]
+    if base.endswith(".git"):
+        base = base[:-4]
     make(
         exists(base),
         lambda: check_system("git clone %s" % url)
