@@ -4,17 +4,19 @@ import os
 import contextlib
 from os.path import exists
 
-redhat_based = set([
-    'centos6',
-    'centos7',
-])
-debian_based = set([
-    'jessie',
-    'wheezy',
-    'trusty',
-    'vivid',
-    'xenial',
-])
+redhat_based = {
+    'centos6': "06centos",
+    'centos7': "07centos",
+}
+debian_based = {
+    'jessie': "08jessie",
+    'wheezy': "07wheezy",
+    'trusty': "14trusty",
+    'vivid':  "15vivid",
+    'xenial': "16xenia",
+}
+
+all_distros = dict(debian_based.items() + redhat_based.items())
 
 
 @contextlib.contextmanager
@@ -63,12 +65,12 @@ def repo(url):
 
 def driver(distro, arg):
     """Do the build"""
+    suffix = all_distros[distro]
+    os.environ["ADSY_VERSION_SUFFIX"] = "~%s+adsy" % suffix
     if distro in debian_based:
         debian(distro, arg)
     elif distro in redhat_based:
         centos(distro, arg)
-    else:
-        raise ValueError("Unknown distro")
 
 
 def build_depends():
@@ -115,6 +117,7 @@ def debian(distro, arg):
             os.system("dpkg-checkbuilddeps") == 0,
             build_depends
         )
+        check_system("sudo make log")
         check_system("make deb")
         os.system("sudo dpkg -i ../*.deb")
         check_system("sudo apt-get install -f -y")

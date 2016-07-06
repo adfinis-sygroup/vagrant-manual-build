@@ -5,6 +5,7 @@ for i in "$@"; do
 	C="$C \"${i//\"/\\\"}\""
 done
 
-cat Vagrantfile  | grep define | grep -v -E "\s*#" | cut -d '"' -f 2 |
-	xargs -I% bash -c "vagrant up % && vagrant ssh % -c \"/vagrant/build.py % $C\" && vagrant halt %"
+for distro in `cat Vagrantfile  | grep define | grep -v -E "\s*#" | cut -d '"' -f 2`; do
+    vagrant up $distro && vagrant ssh $distro -c "/vagrant/build.py $distro $C" && vagrant halt
+done
 
