@@ -18,6 +18,12 @@ debian_based = {
 
 all_distros = dict(debian_based.items() + redhat_based.items())
 
+for env in [
+        key for key in os.environ.keys()
+        if key.startswith("LC_")
+]:
+    del os.environ[env]
+
 
 @contextlib.contextmanager
 def chdir(directory):
