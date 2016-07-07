@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 ./build.sh \
+    https://github.com/adfinis-sygroup/bs-python-sh \
     https://github.com/adfinis-sygroup/bs-python-click \
     https://github.com/adfinis-sygroup/bs-python-fuzzywuzzy \
     https://github.com/adfinis-sygroup/bs-python-termcolor \
