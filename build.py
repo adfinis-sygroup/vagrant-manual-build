@@ -130,6 +130,7 @@ def debian(distro, arg):
             build_depends
         )
         check_system("sudo make log")
+        check_system("sudo chown -R vagrant:vagrant .")
         check_system("make deb")
         if distro == "wheezy":
             os.system("rm ../python3-*.deb")
